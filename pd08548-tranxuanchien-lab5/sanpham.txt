@@ -1,0 +1,30 @@
+create database QuanLiBanHang
+
+use QuanliBanHang
+create table Khach_Hang(
+	MaKH nvarchar(30) primary key,
+	HoKH nvarchar(30),--mac dinh null
+	TenKH nvarchar(20),
+	DiaChi nvarchar(200),
+	Email nvarchar(200),
+	SDT int
+)
+create table San_Pham(
+	MaSP int primary key,
+	MoTa nvarchar(300),--mac dinh null
+	SoLuong int,
+	DonGia int,
+	TenSP nvarchar(200)
+)
+create table Hoa_Don(
+	MaHD int primary key,
+	NgayMuaHang date,
+	MaKH nvarchar(20),
+	TrangThai nvarchar(200)
+)
+create table Hoa_Don_Chi_Tiet(
+	MaHDCT int primary key,
+	MaSP int,
+	SoLuong int,
+	MaHD int 
+)

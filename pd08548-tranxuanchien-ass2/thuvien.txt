@@ -1,0 +1,150 @@
+create database QLThuVien
+
+create table SinhVien(
+	MaSV nvarchar (10) not null,
+	TenSV nvarchar (50) not null,
+	NgayHH date not null,
+	ChuyenNganh nvarchar (50) null,
+	Email nvarchar (50) not null,
+	SDT nvarchar (15) not null,
+	primary key (MaSV)
+)
+create table LoaiSach(
+MaLoai nvarchar (10) not null,
+TenLoai nvarchar (50) not null,
+primary key(MaLoai)
+)
+
+create table Sach(
+MaSach nvarchar(10) not null,
+TenSach nvarchar(50) ,
+NhaXuatBan nvarchar(50),
+TacGia nvarchar(50),
+SL int,
+GiaTien float ,
+NgayNhapKho date,
+ViTri nvarchar(50),
+MaLoai nvarchar(10),
+SoTrang int,
+primary key (MaSach),
+foreign key (MaLoai) references LoaiSach(MaLoai)
+)
+create table PhieuMuon(
+MaPM nvarchar (10) primary key not null,
+NgayMuon date not null,
+NgayTra date not null,
+MaSV nvarchar (10) not null,
+TrangThai nvarchar (50),
+foreign key (MaSV) references SinhVien(MaSV)
+)
+create table ChiTietPM(
+ID int primary key,
+MaPM nvarchar (10) not null,
+MaSach nvarchar (10) not null,
+GhiChu nvarchar (250),
+foreign key (MaPM) references PhieuMuon(MaPM),
+foreign key (MaSach) references Sach(MaSach)
+)
+
+insert into LoaiSach(MaLoai,TenLoai)
+values 
+('DH',N'Đồ Họa'),
+('EN',N'Tiến Anh'),
+('IT',N'Công Nghệ Thông Tin'),
+('KS',N'Khách Sạn'),
+('KT',N'Kinh Tế')
+
+insert into Sach(MaSach,TenSach,NhaXuatBan,TacGia,SL,GiaTien,NgayNhapKho,ViTri,MaLoai,SoTrang)
+values ('Sach01',N'Nguyên Lí Kế Toán',N'Nhà Xuất Bản FPT',N'Lê Duẩn','100','120000','2023-12-12','1','KT','200'),
+('Sach02',N'Kế Toán Quản Trị',N'Nhà Xuất Bản FPT',N'Lê Duẩn','100','120000','2023-12-12','1','KT','200'),
+('Sach03',N'Quản TRị Bán Hàng',N'Nhà Xuất Bản FPT',N'Lê Duẩn','100','120000','2023-12-12','1','KT','200'),
+('Sach04',N'Tin Học Cơ sở',N'Nhà Xuất Bản FPT',N'Lê Duẩn','105','120000','2023-12-12','1','IT','200'),
+('Sach05',N'Tin Học Văn Phòng',N'Nhà Xuất Bản FPT',N'Lê Duẩn','150','150000','2022-12-12','1','IT','200'),
+('Sach06',N'Thiết Lập Và Quản Trị',N'Nhà Xuất Bản FPT',N'Lê Duẩn','100','120000','2023-12-12','1','IT','200'),
+('Sach07',N'Cơ Sở Dữ Liệu',N'Nhà Xuất Bản FPT',N'Lê Duẩn','105','120000','2023-12-12','1','IT','200'),
+('Sach08',N'Cơ Sở Văn Hóa',N'Nhà Xuất Bản FPT',N'Lê Duẩn','70','120000','2023-12-12','1','KS','200'),
+('Sach09',N'Nghiệp Vụ Lễ Tân',N'Nhà Xuất Bản FPT',N'Lê Duẩn','35','100000','2023-12-12','1','KS','200'),
+('Sach10',N'Lập Trình Mobile',N'Nhà Xuất Bản FPT',N'Lê Duẩn','70','120000','2023-12-12','1','IT','200')
+
+insert into SinhVien(MaSV,TenSV,NgayHH,ChuyenNganh,SDT,Email)
+values ('PD0110',N'Trần Xuân Chiến','2024-12-12',N'Phát Triển Phần Mềm','03511','Chien1@gmail.com'),
+('PD0111',N'Trần Xuân Đại','2024-12-12',N'Lập Trình Mobile','03511','Chien2@gmail.com'),
+('PD0112',N'Trần Xuân Bắc','2024-12-12',N'Đồ Họa','03511','Chien3@gmail.com'),
+('PD0113',N'Nguyễn Xuân Chiến','2024-12-12',N'Kinh Tế','03511','Chien4@gmail.com'),
+('PD0114',N'Trần Văn Quang','2024-12-12',N'Lập Trình Mobile','03511','Chien5@gmail.com'),
+('PD0115',N'Nguyễn Cao Cường','2024-12-12',N'Đồ Họa','03511','Chien6@gmail.com'),
+('PD0116',N'Đòa Văn Thành','2024-12-12',N'Đồ Họa','03511','Chien7@gmail.com'),
+('PD0117',N'Trịnh Văn Hiếu','2024-12-12',N'Đồ Họa','03511','Chien8@gmail.com'),
+('PD0118',N'Trương Thế Hiếu','2024-12-12',N'Kinh Tế','03511','Chien9@gmail.com'),
+('PD0119',N'Châu Quang Tâm','2024-12-12',N'Phát Triển Phần Mềm','03511','Chien10@gmail.com'),
+('PD0121',N'Trần Hoài Dương','2024-12-12',N'Kinh Tế','03511','Chien11@gmail.com'),
+('PD0122',N'Uzumaki Naruto','2024-12-12',N'Kinh Tế','03511','Chien12@gmail.com'),
+('PD0123',N'Uchiha Sasuke','2024-12-12',N'Ứng Dụng Phần Mềm','03511','Chien13@gmail.com')
+
+insert into PhieuMuon(MaPM,NgayMuon,NgayTra,MaSV,TrangThai)
+values ('PM01','2022-05-05','2022-10-10','PD0111',N'Đã Trả'),
+('PM02','2022-04-05','2022-10-10','PD0111',N'Đã Trả'),
+('PM03','2022-03-05','2022-11-10','PD0112',N'Chưa Trả'),
+('PM04','2022-02-05','2022-11-10','PD0113',N'Chưa Trả'),
+('PM05','2022-01-05','2022-12-10','PD0114',N'Chưa Trả'),
+('PM06','2022-06-05','2022-11-10','PD0115',N'Đã Trả'),
+('PM07','2022-07-05','2022-10-10','PD0116',N'Đã Trả'),
+('PM08','2022-08-05','2022-10-10','PD0117',N'Đã Trả'),
+('PM09','2022-03-05','2022-11-10','PD0118',N'Chưa Trả'),
+('PM010','2022-06-05','2022-10-10','PD0119',N'Đã Trả'),
+('PM011','2022-02-05','2022-10-10','PD0121',N'Đã Trả'),
+('PM012','2022-03-05','2022-11-10','PD0122',N'Chưa Trả'),
+('PM013','2022-05-05','2022-10-10','PD0123',N'Đã Trả'),
+('PM014','2022-05-05','2022-12-10','PD0111',N'Chưa Trả'),
+('PM015','2022-05-05','2022-12-10','PD0111',N'Đã Trả'),
+('PM016','2022-05-05','2022-11-10','PD0111',N'Chưa Trả'),
+('PM017','2022-05-05','2022-10-10','PD0112',N'Đã Trả'),
+('PM018','2022-05-05','2022-11-10','PD0113',N'Đã Trả'),
+('PM019','2022-05-05','2022-10-10','PD0114',N'Chưa Trả'),
+('PM020','2022-05-05','2022-12-10','PD0112',N'Đã Trả')
+
+insert into ChiTietPM(ID,MaPM,MaSach,GhiChu)
+values ('1','PM01','Sach01',N''),
+('2','PM02','Sach02',N''),
+('3','PM01','Sach03',N''),
+('4','PM02','Sach04',N''),
+('5','PM03','Sach05',N''),
+('6','PM04','Sach06',N''),
+('7','PM03','Sach07',N''),
+('8','PM02','Sach08',N''),
+('9','PM06','Sach09',N''),
+('10','PM03','Sach10',N'')
+
+
+
+
+alter table Sach
+add constraint Check_GiaTien_Min
+check (GiaTien>=0)
+alter table Sach
+add constraint Check_SoLuong_Min
+Check (SL=0)
+alter table SinhVien
+add constraint SinhVien_UNQ_Email
+unique (Email)
+
+--lien ket bang
+alter table PhieuMuon
+add constraint PhieuMuon_DEPT_FK1
+foreign key (MaSV)
+references SinhVien(MaSV)
+
+alter table ChiTietPM
+add constraint ChiTietPM_DEPT_FK2
+foreign key (MaPM)
+references PhieuMuon(MaPM)
+
+alter table ChiTietPM
+add constraint ChiTietPM_DEPT_FK3
+foreign key (MaSach)
+references Sach(MaSach)
+
+alter table Sach
+add constraint Sach_DEPT_FK4
+foreign key (id)
+references LoaiSach(id)
